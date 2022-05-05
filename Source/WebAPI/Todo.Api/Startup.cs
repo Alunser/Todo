@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Todo.Data.Contexts;
 using Todo.Data.Repositories;
 using Todo.Domain.TodoItens.Handlers;
@@ -30,20 +32,20 @@ namespace Todo.Api
             services.AddTransient<ITodoRepository, TodoRepository>();
             services.AddTransient<TodoHandler, TodoHandler>();
 
-            //services
-            //   .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            //   .AddJwtBearer(options =>
-            //   {
-            //       options.Authority = "https://securetoken.google.com/project-1064011784157549102";
-            //       options.TokenValidationParameters = new TokenValidationParameters
-            //       {
-            //           ValidateIssuer = true,
-            //           ValidIssuer = "https://securetoken.google.com/project-1064011784157549102",
-            //           ValidateAudience = true,
-            //           ValidAudience = "project-1064011784157549102",
-            //           ValidateLifetime = true
-            //       };
-            //   });
+            services
+               .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+               .AddJwtBearer(options =>
+               {
+                   options.Authority = "https://securetoken.google.com/project-1064011784157549102";
+                   options.TokenValidationParameters = new TokenValidationParameters
+                   {
+                       ValidateIssuer = true,
+                       ValidIssuer = "https://securetoken.google.com/project-1064011784157549102",
+                       ValidateAudience = true,
+                       ValidAudience = "project-1064011784157549102",
+                       ValidateLifetime = true
+                   };
+               });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
