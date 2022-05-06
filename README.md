@@ -1,4 +1,4 @@
-<h1 align="center"> Padrão CQRS </h1>
+<h1 align="center"> Todo App </h1>
 
 <img src="https://img.shields.io/github/issues/Alunser/Autenticacao"/> <img src="https://img.shields.io/github/forks/Alunser/Autenticacao"/> <img src="https://img.shields.io/github/stars/Alunser/Autenticacao"/>
 
